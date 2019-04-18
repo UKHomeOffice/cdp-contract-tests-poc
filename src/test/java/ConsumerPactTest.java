@@ -14,7 +14,7 @@ public class ConsumerPactTest {
 
     private static final String PROVIDER = "google-server";
     private static final String CONSUMER = "google-client";
-    private static final String URL_ENDPOINT = "/url-endpoint";
+    private static final String IMAGE_ENDPOINT = "/imghp";
     /**
      * The mock provider we will use to verify our pact.
      */
@@ -32,7 +32,7 @@ public class ConsumerPactTest {
         return builder
                 .uponReceiving("a google search request")
                 .method("GET")
-                .path(URL_ENDPOINT)
+                .path(IMAGE_ENDPOINT)
                 .willRespondWith()
                 .status(HttpStatus.SC_OK)
                 .toPact();
@@ -53,7 +53,7 @@ public class ConsumerPactTest {
     public void verifyPactWithProfileManager() {
         RestAssured
                 .when()
-                .get(provider.getUrl() + URL_ENDPOINT)
+                .get(provider.getUrl() + IMAGE_ENDPOINT)
                 .then()
                 .statusCode(HttpStatus.SC_OK);
     }
